@@ -190,6 +190,9 @@
             border: 3px solid #6b46c1;
             object-fit: contain;
             background-color: rgba(0, 0, 0, 0.3);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         .character-card h3 {
             font-size: 2.2em;
@@ -280,35 +283,76 @@
         }
 
         @media (max-width: 768px) {
+            .hero-logo {
+                width: 100%; /* Fill .content's width, respecting padding */
+                max-width: 480px; /* Adjust as needed for optimal mobile view */
+            }
             h1 {
-                font-size: 4em;
+                font-size: 3.2em; /* Reduced from 4em */
                 margin-top: 1em;
             }
             .content p {
-                font-size: 1.8em;
+                font-size: 1.5em; /* Reduced from 1.8em */
+            }
+            .steam-btn {
+                font-size: 1.4em; /* Reduced from 1.7em */
+                padding: 15px 30px; /* Adjusted padding */
+            }
+            .nav-steam-btn {
+                font-size: 1.1em; /* Reduced from 1.2em */
+                padding: 8px 15px; /* Adjusted padding */
+            }
+            .site-nav ul li a {
+                font-size: 1.15em; /* Reduced from 1.3em */
             }
             .section-title {
-                font-size: 3.5em;
+                font-size: 2.8em; /* Reduced from 3.5em */
             }
             .feature-card h3 {
-                font-size: 2em;
+                font-size: 1.8em; /* Reduced from 2em */
             }
             .feature-card p {
-                font-size: 1.5em;
+                font-size: 1.3em; /* Reduced from 1.5em */
             }
             .character-card h3 {
-                font-size: 1.8em;
+                font-size: 1.6em; /* Reduced from 1.8em */
             }
             .character-card p {
-                font-size: 1.4em;
+                font-size: 1.2em; /* Reduced from 1.4em */
             }
             .card-example {
                 flex-direction: column;
                 text-align: center;
             }
             .card-example img {
-                width: 200px;
-                height: 300px;
+                width: 180px; /* Slightly smaller card images on mobile */
+                height: 270px;
+            }
+            .card-example h4 {
+                font-size: 2em; /* Added for mobile */
+            }
+            .card-example p {
+                font-size: 1.4em; /* Added for mobile */
+            }
+            .intro-feature-card p {
+                font-size: 1.4em; /* Added for mobile */
+            }
+            /* Mobile styles for character cards on index.html */
+            #characters .character-card {
+                font-size: 0.875rem; /* Approx 14px. Scales inner em units. */
+                padding: 20px; /* Match characters.html mobile padding */
+            }
+            #characters .character-card h3 {
+                font-size: 1.6em; /* Relative to 0.875rem -> 1.6 * 14px = 22.4px (was 1.6em of root) */
+            }
+            #characters .character-card p {
+                font-size: 1.2em; /* General p, relative to 0.875rem -> 1.2 * 14px = 16.8px */
+                                     /* Inline styled p (font-size:0.85em) becomes 0.85 * 14px = 11.9px */
+            }
+            #characters .character-card img {
+                max-width: 200px; /* Slightly smaller than default 250px for featured cards */
+                height: auto; /* Maintain aspect ratio */
+                margin-bottom: 20px; /* Match characters.html */
             }
         }
         .screenshots-grid {
@@ -423,6 +467,7 @@
             padding: 0;
             display: flex;
             align-items: center; /* Vertically align items */
+            width: 100%; /* Ensure ul takes full width */
         }
         .site-nav ul li {
             margin-right: 25px;
@@ -461,18 +506,118 @@
             transform: scale(1.05);
             box-shadow: 0 0 24px 2px #a084e8cc, 0 0 6px 1px #fff2;
         }
+
+        /* Hamburger Menu Styles */
+        .hamburger-menu {
+            display: none; /* Hidden by default, shown on mobile */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin-left: auto; /* Pushes it to the right of other nav items if nav was flex space-between */
+            z-index: 1001; /* Ensure it's clickable */
+        }
+
+        /* Desktop: Keep nav items normally, style Steam button within LI */
+        .site-nav ul {
+            display: flex; 
+            align-items: center;
+            /* flex-grow: 1; Optional: if .site-nav itself doesn't handle distribution well */
+        }
+        .nav-steam-btn-li {
+            margin-left: auto; /* Pushes this item to the right */
+            margin-right: 0; /* Ensure no extra right margin */
+        }
+        .nav-steam-btn-li .nav-steam-btn {
+            display: inline-block; /* Make it behave like the original button */
+            padding: 10px 20px; /* Keep original padding */
+             /* font-size is inherited or can be set if needed */
+        }
+
+        @media (max-width: 768px) {
+            .site-nav {
+                justify-content: space-between; /* Ensure logo/title and hamburger are spaced out */
+            }
+            .hamburger-menu {
+                display: block; /* Show hamburger on mobile */
+                /* SVG is already styled inline for fill color, adjust size if needed */
+            }
+            .site-nav ul#nav-links { /* Target the UL specifically */
+                display: none; /* Hide by default on mobile */
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Assuming navbar height is 70px */
+                left: 0;
+                width: 100%;
+                background-color: rgba(10, 10, 10, 0.97); /* Darker, more opaque */
+                padding-top: 0;
+                padding-bottom: 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+                border-top: 1px solid rgba(255, 225, 160, 0.2); /* Separator from nav bar */
+            }
+            .site-nav ul#nav-links.nav-active { /* Class toggled by JS */
+                display: flex;
+            }
+            .site-nav ul#nav-links li {
+                margin-right: 0;
+                margin-left: 0; /* Reset margin for full width */
+                width: 100%;
+            }
+            .site-nav ul#nav-links li a,
+            .site-nav ul#nav-links li .nav-steam-btn { /* Style both regular links and steam button link */
+                display: block; /* Full width clickable area */
+                padding: 18px 20px;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 225, 160, 0.15); /* Separator for items */
+                font-size: 1.25em; /* Mobile nav item font size */
+                color: #ffe7a0; /* Ensure consistent color */
+                width: auto; /* Override if it was set to 100% previously directly on <a> */
+                margin: 0; /* Reset any margins */
+            }
+            .site-nav ul#nav-links li .nav-steam-btn {
+                background-color: transparent; /* Make it look like a regular nav item */
+                box-shadow: none;
+                border-radius: 0;
+                /* transition: none; /* remove hover animations if not desired in mobile menu */
+            }
+            .site-nav ul#nav-links li .nav-steam-btn:hover {
+                background-color: rgba(255, 225, 160, 0.1); /* Subtle hover for mobile menu items */
+                color: #fff;
+                transform: none; /* No scale transform in mobile menu */
+                box-shadow: none;
+            }
+            .site-nav ul#nav-links li:last-child a,
+            .site-nav ul#nav-links li:last-child .nav-steam-btn {
+                border-bottom: none;
+            }
+
+            /* Hide the desktop steam button if it was styled specifically outside the media query for li a */
+            /* .nav-steam-btn-li .nav-steam-btn { display: none; } This would hide it if we wanted a totally different mobile one */
+
+            .hero-logo {
+                width: 100%; /* Fill .content's width, respecting padding */
+                max-width: 480px; /* Adjust as needed for optimal mobile view */
+            }
+        }
     </style>
 </head>
 <body>
     <nav class="site-nav">
-        <ul>
+        <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+            <svg viewBox="0 0 100 80" width="28" height="28" fill="#ffe7a0" style="display: block;">
+                <rect width="100" height="15" rx="8"></rect>
+                <rect y="30" width="100" height="15" rx="8"></rect>
+                <rect y="60" width="100" height="15" rx="8"></rect>
+            </svg>
+        </button>
+        <ul id="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="characters.html">Characters</a></li>
             <li><a href="open-world.html">Open World</a></li>
             <li><a href="cards-arcana-sets.html">Cards & Sets</a></li>
             <li><a href="major-arcana-artifacts.html">Arcana Artifacts</a></li>
+            <li class="nav-steam-btn-li"><a href="https://store.steampowered.com/app/3111380/Taromancy/" target="_blank" rel="noopener" class="nav-steam-btn">Wishlist on Steam</a></li>
         </ul>
-        <a href="https://store.steampowered.com/app/3111380/Taromancy/" target="_blank" rel="noopener" class="nav-steam-btn">Wishlist on Steam</a>
     </nav>
     <h1 class="visually-hidden">Taromancy</h1>
     <div class="video-container">
@@ -484,9 +629,6 @@
     <div class="content">
         <img src="images/Taromancy_Library_Logo.png" alt="Taromancy Logo" class="hero-logo" />
         <p>A roguelike deck builder where divine beings and mortal souls intertwine in a cosmic dance of fate and fortune.</p>
-        <a href="https://store.steampowered.com/app/3111380/Taromancy/" target="_blank" rel="noopener" class="steam-btn">
-            Wishlist on Steam
-        </a>
     </div>
     <section id="features">
         <h2 class="section-title">Features</h2>
@@ -870,6 +1012,18 @@
                 showSlide(slideshowIndex + 1);
             }, 5000);
         });
+
+        // Hamburger Menu Toggle
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const navLinksUl = document.getElementById('nav-links');
+
+        if (hamburgerBtn && navLinksUl) {
+            hamburgerBtn.addEventListener('click', () => {
+                const isExpanded = hamburgerBtn.getAttribute('aria-expanded') === 'true' || false;
+                hamburgerBtn.setAttribute('aria-expanded', !isExpanded);
+                navLinksUl.classList.toggle('nav-active');
+            });
+        }
     </script>
 </body>
 </html> 
