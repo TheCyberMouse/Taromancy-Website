@@ -58,7 +58,7 @@
             position: relative;
             z-index: 1;
             text-align: center;
-            padding: 120px 20px 120px 20px;
+            padding: 200px 20px 200px 20px;
             max-width: 1200px;
             margin: 0 auto;
             min-height: 60vh;
@@ -70,16 +70,20 @@
         .hero-logo {
             max-width: 1000px;
             width: 98vw;
-            margin: 0 auto -0.3em auto;
+            margin: 0 auto 2.2em auto !important;
             display: block;
             filter: drop-shadow(0 4px 32px #000a);
         }
         .visually-hidden {
-            position: absolute !important;
-            height: 1px; width: 1px;
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: 0;
             overflow: hidden;
-            clip: rect(1px, 1px, 1px, 1px);
+            clip: rect(0, 0, 0, 0);
             white-space: nowrap;
+            border: 0;
         }
         h1 {
             font-size: 6em;
@@ -91,9 +95,11 @@
         .content p {
             font-size: 2.2em;
             max-width: 800px;
-            margin: 0 auto 0.5em auto;
+            margin: 0 auto 0 auto !important;
             line-height: 1.4;
             letter-spacing: 1px;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
         }
         button {
             background-color: #6b46c1;
@@ -388,6 +394,7 @@
     </style>
 </head>
 <body>
+    <h1 class="visually-hidden">Taromancy</h1>
     <div class="video-container">
         <video id="background-video" autoplay loop muted playsinline>
             <source src="Movies/StarFaceLoop_A.mp4" type="video/mp4">
@@ -396,7 +403,6 @@
     <div class="overlay"></div>
     <div class="content">
         <img src="images/Taromancy_Library_Logo.png" alt="Taromancy Logo" class="hero-logo" />
-        <h1 class="visually-hidden">Taromancy</h1>
         <p>A roguelike deck builder where divine beings and mortal souls intertwine in a cosmic dance of fate and fortune.</p>
         <a href="https://store.steampowered.com/app/3111380/Taromancy/" target="_blank" rel="noopener" class="steam-btn">
             Wishlist on Steam
@@ -439,7 +445,7 @@
             </div>
             <div class="feature-card">
                 <h3><span style="font-size:2em; color:#ffe7a0;">∞</span> Infinite Replayability</h3>
-                <p>No two journeys are ever the same. With procedurally generated maps, events, and encounters, Taromancy offers endless replay value and new surprises every run.</p>
+                <p>No two journeys are ever the same. With an ever-evolving map, events, and encounters, Taromancy offers endless replay value and new surprises every run.</p>
             </div>
         </div>
     </section>
