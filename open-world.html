@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open World Map - Taromancy</title>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Almanack';
+            src: url('./fonts/rm_almanack.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Almanack', 'IM Fell English', Arial, sans-serif;
+            color: white;
+            background-color: #0f0f0f;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding-top: 70px; /* Account for fixed navbar height */
+            box-sizing: border-box; /* Ensure padding doesn't add to 100vh for flex centering */
+        }
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .video-container video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.15);
+            z-index: 0;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+        .page-title {
+            font-size: 4.5em;
+            margin-bottom: 0.5em;
+            color: #ffe7a0;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .construction-text {
+            font-size: 2em;
+            margin-bottom: 1.5em;
+            color: #fff;
+        }
+        @keyframes steam-glow {
+            0% { box-shadow: 0 0 16px 0 #6b46c1aa, 0 0 0px 0 #fff0; }
+            100% { box-shadow: 0 0 32px 4px #a084e8cc, 0 0 8px 2px #fff2; }
+        }
+        /* Navbar Styles */
+        .site-nav {
+            background-color: rgba(10, 10, 10, 0.85);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+        }
+        .site-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        .site-nav ul li {
+            margin-right: 25px;
+        }
+        .site-nav ul li:last-child {
+            margin-right: 0;
+        }
+        .site-nav ul li a {
+            color: #ffe7a0;
+            text-decoration: none;
+            font-size: 1.3em;
+            letter-spacing: 1px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        .site-nav ul li a:hover,
+        .site-nav ul li a.active {
+            color: #fff;
+            text-shadow: 0 0 5px #ffe7a0;
+        }
+        .nav-steam-btn {
+            background-color: #6b46c1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Almanack', 'IM Fell English', Arial, sans-serif;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 12px 0 #6b46c1aa;
+        }
+        .nav-steam-btn:hover {
+            background-color: #553c9a;
+            transform: scale(1.05);
+            box-shadow: 0 0 24px 2px #a084e8cc, 0 0 6px 1px #fff2;
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="characters.html">Characters</a></li>
+            <li><a href="open-world.html" class="active">Open World</a></li>
+            <li><a href="cards-arcana-sets.html">Cards & Sets</a></li>
+            <li><a href="major-arcana-artifacts.html">Arcana Artifacts</a></li>
+        </ul>
+        <a href="https://store.steampowered.com/app/3111380/Taromancy/" target="_blank" rel="noopener" class="nav-steam-btn">Wishlist on Steam</a>
+    </nav>
+    <div class="video-container">
+        <video id="background-video" autoplay loop muted playsinline>
+            <!-- JavaScript will set a random video source -->
+        </video>
+    </div>
+    <div class="overlay"></div>
+    <div class="content">
+        <h1 class="page-title">Open World Map</h1>
+        <p class="construction-text">This page is currently under construction. Please check back soon!</p>
+    </div>
+
+    <script>
+        const videos = [
+            'Movies/DogLoop.mp4', 'Movies/HeraldLoop.mp4', 'Movies/InsectLoop.mp4', 'Movies/CastawayLoop.mp4', 'Movies/Snood2Loop.mp4',
+            'Movies/NecromancerLoop.mp4', 'Movies/TheLoversRinGLoop.mp4', 'Movies/BlobLoop.mp4', 'Movies/JewelerLoop.mp4',
+            'Movies/SnoodLoop.mp4', 'Movies/TheLoversFlowerLoop.mp4', 'Movies/TaromancyIntro.mp4', 'Movies/PageHeroPoseLoop.mp4',
+            'Movies/PageDaggerUpLoop.mp4', 'Movies/PageHunkreadingLoop.mp4', 'Movies/PageDefenseLoop.mp4', 'Movies/PageBlurLoop.mp4',
+            'Movies/OceanHoleLoop.mp4', 'Movies/StarfaceLoop_B.mp4', 'Movies/RedWomanLoopSkull_B.mp4', 'Movies/RedWomanLoop_Gem_B.mp4',
+            'Movies/RedWomanLoop_Gem_A.mp4', 'Movies/WomanWithStarOrbLoop.mp4', 'Movies/AngelDefendsLoop.mp4', 'Movies/RedWomanLoopSkull_A.mp4',
+            'Movies/StarFaceBurstLoop.mp4', 'Movies/BlackHoleHypnoLoop.mp4', 'Movies/GoldenFaceMaskLoop.mp4', 'Movies/StarFaceLoop_D.mp4',
+            'Movies/StarHorseLoop.mp4', 'Movies/StarFaceLoop_C.mp4', 'Movies/StarFaceLoop_A.mp4', 'Movies/SparkBoyLoop_A.mp4',
+            'Movies/SparkBoyLoop_B.mp4', 'Movies/TheLargeSwordLoop.mp4', 'Movies/SpiralWomanLoop_B.mp4', 'Movies/SpiralWomanLoop_A.mp4',
+            'Movies/TheSpiralStarLoop.mp4', 'Movies/LightAngelLoop_B.mp4', 'Movies/AngelGuideLoop.mp4', 'Movies/LightAngelLoop_A.mp4',
+            'Movies/BloodDanceLoop.mp4', 'Movies/FishingLoop.mp4', 'Movies/ForestHoleLoop.mp4', 'Movies/StarChildLoop.mp4',
+            'Movies/ChaliceRitualLoop.mp4', 'Movies/BloodWallLoop.mp4', 'Movies/BloodyDaggerLoop.mp4', 'Movies/FoolsPondLoop.mp4',
+            'Movies/YellowGrasslandsLoop.mp4', 'Movies/WaxWaneLoop.mp4', 'Movies/WaterLillyLoop.mp4', 'Movies/WardrumArmyLoop.mp4',
+            'Movies/THPReadingLoop.mp4', 'Movies/TheWheelLoop.mp4', 'Movies/TheTowerLoop.mp4', 'Movies/TheSunLoop.mp4',
+            'Movies/TheStarLoop.mp4', 'Movies/TheRiverLoop.mp4', 'Movies/TheMoonTempleLoop.mp4', 'Movies/TheMagcianLoop.mp4',
+            'Movies/TheHermitCaveLoop.mp4', 'Movies/TheGardenLoop.mp4', 'Movies/TheEyeLoop.mp4', 'Movies/TheEmpressLoop.mp4',
+            'Movies/TheEmperorLoop.mp4', 'Movies/TheChoiceLoop.mp4', 'Movies/TheChariotWheelLoop.mp4', 'Movies/TheChariotLoop.mp4',
+            'Movies/TheaterKissLoop.mp4', 'Movies/TavernManLoop.mp4', 'Movies/SwordGraveyardLoop.mp4', 'Movies/SwampBirdLoop.mp4',
+            'Movies/StrengthManLionLoop.mp4', 'Movies/Starsandfaceloop.mp4', 'Movies/StarNightLoop.mp4', 'Movies/SpiderHoleGirlLoop.mp4',
+            'Movies/SkyLandscapeLoop_B.mp4', 'Movies/SkyLandscapeLoop_A.mp4', 'Movies/ShieldFieldLoop.mp4', 'Movies/RogueNightStar.mp4',
+            'Movies/RogueNightMoon.mp4', 'Movies/RiverRocksLoop.mp4', 'Movies/RedRobedManLoop.mp4', 'Movies/PurplePrisonLopo.mp4',
+            'Movies/PoisonedWomanLoop.mp4', 'Movies/PoisonBowlLoop.mp4', 'Movies/PlanetTreesLoop.mp4', 'Movies/OrnathopterLoop.mp4',
+            'Movies/OceansLoop.mp4', 'Movies/NightShip1Loop.mp4', 'Movies/NightRitualLoop.mp4', 'Movies/MusicPotionLoop_Simple.mp4',
+            'Movies/MusicPotionLoop.mp4', 'Movies/MusicAgonyLoop.mp4', 'Movies/MushroomSwampLoop.mp4', 'Movies/MountainLoop.mp4',
+            'Movies/MilkmanLoop.mp4', 'Movies/ManLookingHoleLoop.mp4', 'Movies/LoversLoungeLoop.mp4'
+        ];
+
+        function setRandomVideo() {
+            const videoElement = document.getElementById('background-video');
+            if (videoElement) {
+                const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+                // Correct path assuming 'Movies' is at the same level as 'index.html' or a subdirectory of it
+                // If open-world.html is in Taromancy-Website/, and Movies is also in Taromancy-Website/
+                // then the path should be 'Movies/filename.mp4'
+                // If Movies is in the root, and open-world.html is in Taromancy-Website, it should be '../Movies/filename.mp4'
+                // Based on current structure, it seems 'Movies' is a sibling to html files within 'Taromancy-Website'.
+                videoElement.src = randomVideo; // Path should be relative to the HTML file.
+                videoElement.load();
+            }
+        }
+        window.onload = function() {
+            setRandomVideo();
+            // No need to change video every 30 seconds for a static "under construction" page
+        };
+    </script>
+</body>
+</html> 
