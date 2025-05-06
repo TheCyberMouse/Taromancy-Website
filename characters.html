@@ -107,14 +107,14 @@
             transform: translateY(-5px);
         }
         .character-card img {
-            width: 100%;
-            height: 400px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            border: 3px solid #6b46c1;
-            object-fit: contain;
-            background-color: rgba(0, 0, 0, 0.3);
-        }
+            max-width: 100%;               /* Optional: scale within container */
+            height: auto;                  /* Maintain aspect ratio */
+            border-radius: 15px;           /* Keep rounded corners */
+            margin-bottom: 30px;           /* Spacing below image */
+            border: 3px solid #6b46c1;     /* Purple border */
+            background-color: rgba(0, 0, 0, 0.3); /* Optional background */
+            display: block;                /* Removes inline gap */
+        }   
         .character-card h3 {
             font-size: 2.2em;
             margin: 0.5em 0;
@@ -147,6 +147,36 @@
                 height: 300px;
             }
         }
+        .sort-controls {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+        .sort-btn {
+            background-color: #6b46c1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0 10px;
+            font-family: 'Almanack', 'IM Fell English', Arial, sans-serif;
+            letter-spacing: 1.5px;
+            transition: transform 0.2s cubic-bezier(.4,2,.6,1), box-shadow 0.2s;
+            box-shadow: 0 0 16px 0 #6b46c1aa;
+        }
+        .sort-btn:hover {
+            background-color: #553c9a;
+            transform: scale(1.05);
+            box-shadow: 0 0 32px 4px #a084e8cc, 0 0 8px 2px #fff2;
+        }
+        .sort-btn.active {
+            background-color: #ffe7a0;
+            color: #0f0f0f;
+        }
     </style>
 </head>
 <body>
@@ -159,506 +189,1009 @@
     <a href="index.html" class="back-btn">← Back</a>
     <div class="content">
         <h1 class="page-title">Characters</h1>
-        <div class="characters-grid">
+        <div class="sort-controls">
+            <button class="sort-btn active" data-sort="custom">Custom Order</button>
+            <button class="sort-btn" data-sort="alphabetical">Alphabetical</button>
+        </div>
+        <div class="characters-grid" id="characters-grid">
             <div class="character-card">
                 <img src="images/Treant_Card.png" alt="Treant" />
                 <h3>Treant</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Treant</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hanged Man</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 120 &nbsp; <b>Coin:</b> 0 &nbsp; <b>Insanity:</b> 10</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Treant is ancient, slow, and wise. Roots run deep, and so does patience.</p>
             </div>
             <div class="character-card">
                 <img src="images/Snood_Card.png" alt="Snood" />
                 <h3>Snood</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Snood</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 50</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">Snood is a mystery even to themselves, drifting between dreams and reality.</p>
             </div>
             <div class="character-card">
                 <img src="images/Moobi_Card.png" alt="Moobi" />
                 <h3>Moobi</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Moobi</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Fool</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 60 &nbsp; <b>Coin:</b> 50 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">Moobi doesn't walk through the world so much as meander curiously beside it. They are an enigma with a grin and a tendency to float where gravity says they shouldn't.</p>
             </div>
             <div class="character-card">
                 <img src="images/Slimeman_Card.png" alt="Slimeman" />
                 <h3>Slimeman</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Slimeman</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Tower</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 90 &nbsp; <b>Coin:</b> 5 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">Slimeman is resilient, reforming after every fall. Nothing keeps him down for long.</p>
             </div>
             <div class="character-card">
                 <img src="images/Teacher_Card.png" alt="Teacher" />
                 <h3>Teacher</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Teacher</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hierophant</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Teacher imparts wisdom, but every lesson comes at a price.</p>
             </div>
             <div class="character-card">
                 <img src="images/Warg_Card.png" alt="Warg" />
                 <h3>Warg</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Warg</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Strength</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">Warg is a force of nature, wild and untamed, loyal to the end.</p>
             </div>
             <div class="character-card">
                 <img src="images/Page2_Card.png" alt="Page2" />
                 <h3>Page2</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Page</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Page</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 60 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">Page2 is always ready for a new chapter, eager to learn and grow.</p>
             </div>
             <div class="character-card">
                 <img src="images/Gambler_Card.png" alt="Gambler" />
                 <h3>Gambler</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Gambler</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Wheel of Fortune</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 100 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Gambler lives for the thrill of chance, always betting on the next big win.</p>
             </div>
             <div class="character-card">
                 <img src="images/Adventurer_Card.png" alt="Adventurer" />
                 <h3>Adventurer</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Adventurer</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Fool</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Adventurer moves from quest to question, chasing wonder with a grin and a bruised knee.</p>
             </div>
             <div class="character-card">
                 <img src="images/Dog_Card.png" alt="Dog" />
                 <h3>Dog</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Dog</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Sun</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 90 &nbsp; <b>Coin:</b> 5 &nbsp; <b>Insanity:</b> 10</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">Dog is loyal, cheerful, and always ready to brighten your day.</p>
             </div>
             <div class="character-card">
                 <img src="images/Apostle_Card.png" alt="Apostle" />
                 <h3>Apostle</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Apostle</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Hierophant<br><b>Second Arcana:</b> Treasure Map</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Apostle believes with the kind of certainty that makes gods uncomfortable.</p>
             </div>
             <div class="character-card">
                 <img src="images/Scholar_Card.png" alt="Scholar" />
                 <h3>Scholar</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Scholar</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hermit</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Scholar seeks knowledge in the shadows, where answers hide in plain sight.</p>
             </div>
             <div class="character-card">
                 <img src="images/DragonKnight_Card.png" alt="DragonKnight" />
                 <h3>DragonKnight</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Dragon Knight</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Chariot</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Dragon Knight rides the line between fire and fury, a force to be reckoned with.</p>
             </div>
             <div class="character-card">
                 <img src="images/Shaman_Card.png" alt="Shaman" />
                 <h3>Shaman</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Shaman</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 40</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Shaman walks between worlds, bridging the gap between the seen and unseen.</p>
             </div>
             <div class="character-card">
                 <img src="images/DragonKing_Card.png" alt="DragonKing" />
                 <h3>DragonKing</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Dragon King</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Emperor</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 120 &nbsp; <b>Coin:</b> 50 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Dragon King rules with a fiery heart, commanding respect and fear in equal measure.</p>
             </div>
             <div class="character-card">
                 <img src="images/Trickerster_Card.png" alt="Trickerster" />
                 <h3>Trickerster</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Trickster</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Magician</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Trickster dances on the edge of chaos, turning the world upside down with a smile.</p>
             </div>
             <div class="character-card">
                 <img src="images/Jester_Card.png" alt="Jester" />
                 <h3>Jester</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Jester</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Fool</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 60 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 45</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Jester laughs in the face of danger, turning tragedy into comedy.</p>
             </div>
             <div class="character-card">
                 <img src="images/Farmer_Card.png" alt="Farmer" />
                 <h3>Farmer</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Farmer</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Empress</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 90 &nbsp; <b>Coin:</b> 5 &nbsp; <b>Insanity:</b> 10</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Farmer nurtures life from the soil, finding strength in simplicity.</p>
             </div>
             <div class="character-card">
                 <img src="images/Beholder_Card.png" alt="Beholder" />
                 <h3>Beholder</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Beholder</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Eye</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Beholder sees all, knows all, and guards secrets with a watchful eye.</p>
             </div>
             <div class="character-card">
                 <img src="images/Judge_Card.png" alt="Judge" />
                 <h3>Judge</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Judge</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Justice</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 90 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Judge weighs the scales of fate, delivering verdicts with unyielding fairness.</p>
             </div>
             <div class="character-card">
                 <img src="images/Politician_Card.png" alt="Politician" />
                 <h3>Politician</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Politician</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Emperor</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 50 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Politician wields words like weapons, shaping destinies with a silver tongue.</p>
             </div>
             <div class="character-card">
                 <img src="images/Insect3_Card.png" alt="Insect3" />
                 <h3>Insect3</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Insect</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 60 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Insect is small but mighty, navigating the world with precision and grace.</p>
             </div>
             <div class="character-card">
                 <img src="images/Insect2_Card.png" alt="Insect2" />
                 <h3>Insect2</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Insect</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 60 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Insect is small but mighty, navigating the world with precision and grace.</p>
             </div>
             <div class="character-card">
                 <img src="images/Insect_Card.png" alt="Insect" />
                 <h3>Insect</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Insect</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 60 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Insect is small but mighty, navigating the world with precision and grace.</p>
             </div>
             <div class="character-card">
                 <img src="images/Socialite2_Card.png" alt="Socialite2" />
                 <h3>Socialite2</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Socialite</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Empress</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 40 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Socialite thrives in the spotlight, weaving connections with charm and wit.</p>
             </div>
             <div class="character-card">
                 <img src="images/Djinn_Card.png" alt="Djinn" />
                 <h3>Djinn</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Djinn</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Magician</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Djinn grants wishes, but be careful what you ask for—magic has a price.</p>
             </div>
             <div class="character-card">
                 <img src="images/Arbitor_Card.png" alt="Arbitor" />
                 <h3>Arbitor</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Arbitor</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Judgement</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Arbitor does not choose sides—she ends arguments. Permanently.</p>
             </div>
             <div class="character-card">
                 <img src="images/Machine_Card.png" alt="Machine" />
                 <h3>Machine</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Machine</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Tower</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Machine is cold and precise, a force of logic in a world of chaos.</p>
             </div>
             <div class="character-card">
                 <img src="images/Graverobber_Card.png" alt="Graverobber" />
                 <h3>Graverobber</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Graverobber</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Death</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 50 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Graverobber walks the line between life and death, seeking treasures in the shadows.</p>
             </div>
             <div class="character-card">
                 <img src="images/One_Card.png" alt="One" />
                 <h3>One</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The One</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Magician</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 90 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The One is a force of nature, a singular presence in a world of many.</p>
             </div>
             <div class="character-card">
                 <img src="images/Mad_Card.png" alt="Mad" />
                 <h3>Mad</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Mad</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 60 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 50</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Mad sees the world through a lens of chaos, finding beauty in the absurd.</p>
             </div>
             <div class="character-card">
                 <img src="images/Socialite_Card.png" alt="Socialite" />
                 <h3>Socialite</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Socialite</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Empress</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 40 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Socialite thrives in the spotlight, weaving connections with charm and wit.</p>
             </div>
             <div class="character-card">
                 <img src="images/Astrologer_Card.png" alt="Astrologer" />
                 <h3>Astrologer</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Astrologer</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Star</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 25 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Astrologer reads the heavens, finding fate written in the stars.</p>
             </div>
             <div class="character-card">
                 <img src="images/Inevitable_Card.png" alt="Inevitable" />
                 <h3>Inevitable</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Inevitable</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Death</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Inevitable is a force of nature, a reminder that all things must end.</p>
             </div>
             <div class="character-card">
                 <img src="images/Mechanic_Card.png" alt="Mechanic" />
                 <h3>Mechanic</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Mechanic</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Magician</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Mechanic tinkers with the gears of fate, finding order in chaos.</p>
             </div>
             <div class="character-card">
                 <img src="images/Fallen_Card.png" alt="Fallen" />
                 <h3>Fallen</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Fallen</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Tower</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 40</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Fallen rises from the ashes, a testament to resilience and redemption.</p>
             </div>
             <div class="character-card">
                 <img src="images/Darkness_Card.png" alt="Darkness" />
                 <h3>Darkness</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Darkness</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Darkness is a force of mystery, a reminder that light cannot exist without shadow.</p>
             </div>
             <div class="character-card">
                 <img src="images/Robot2_Card.png" alt="Robot2" />
                 <h3>Robot2</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Robot</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Tower</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Robot is a marvel of engineering, a blend of logic and wonder.</p>
             </div>
             <div class="character-card">
                 <img src="images/Rebel_Card.png" alt="Rebel" />
                 <h3>Rebel</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Rebel</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Tower</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Rebel fights against the tide, a force of change in a world of order.</p>
             </div>
             <div class="character-card">
                 <img src="images/Magnus_Card.png" alt="Magnus" />
                 <h3>Magnus</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Magnus</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Magician</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 90 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Magnus is a master of the arcane, a force of magic and mystery.</p>
             </div>
             <div class="character-card">
                 <img src="images/Executioner_Card.png" alt="Executioner" />
                 <h3>Executioner</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Executioner</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Death</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Executioner is a force of justice, a reminder that all actions have consequences.</p>
             </div>
             <div class="character-card">
                 <img src="images/Recluse_Card.png" alt="Recluse" />
                 <h3>Recluse</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Recluse</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hermit</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Recluse finds solace in solitude, a master of self-discovery.</p>
             </div>
             <div class="character-card">
                 <img src="images/Bartender2_Card.png" alt="Bartender2" />
-                <h3>Bartender2</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Bartender_Card.png" alt="Bartender" />
                 <h3>Bartender</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Bartender</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Lovers</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 85 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Bartender listens to every story, serving wisdom with every drink.</p>
             </div>
             <div class="character-card">
                 <img src="images/Librarian_Card.png" alt="Librarian" />
                 <h3>Librarian</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Librarian</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hermit</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Librarian guards knowledge like others guard gold, finding power in forgotten pages.</p>
             </div>
             <div class="character-card">
                 <img src="images/Jeweler_Card.png" alt="Jeweler" />
                 <h3>Jeweler</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Jeweler</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Star</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 100 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Jeweler sees beauty in the rough, crafting brilliance from raw potential.</p>
             </div>
             <div class="character-card">
                 <img src="images/Loner_Card.png" alt="Loner" />
                 <h3>Loner</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Loner</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hermit</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Loner walks their own path, finding strength in solitude and wisdom in silence.</p>
             </div>
             <div class="character-card">
                 <img src="images/Wizard_Card.png" alt="Wizard" />
                 <h3>Wizard</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Wizard</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Magician</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 25 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Wizard bends reality with practiced ease, turning impossibility into mere inconvenience.</p>
             </div>
             <div class="character-card">
                 <img src="images/Necromancer_Card.png" alt="Necromancer" />
                 <h3>Necromancer</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Necromancer</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Death</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 65 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 45</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Necromancer sees death as merely another beginning, a doorway to endless possibilities.</p>
             </div>
             <div class="character-card">
                 <img src="images/Gatekeeper_Card.png" alt="Gatekeeper" />
                 <h3>Gatekeeper</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Gatekeeper</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Justice</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 85 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Gatekeeper stands between worlds, deciding who may pass and who must wait.</p>
             </div>
             <div class="character-card">
                 <img src="images/Castaway2_Card.png" alt="Castaway2" />
                 <h3>Castaway2</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Castaway</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hermit</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 5 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Castaway survives against all odds, finding purpose in isolation.</p>
             </div>
             <div class="character-card">
                 <img src="images/Keymaker_Card.png" alt="Keymaker" />
                 <h3>Keymaker</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Keymaker</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Magician</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 35 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Keymaker crafts solutions to impossible problems, unlocking paths others cannot see.</p>
             </div>
             <div class="character-card">
                 <img src="images/Illusionist_Card.png" alt="Illusionist" />
                 <h3>Illusionist</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Illusionist</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 65 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Illusionist knows reality is merely what we agree to see, and they have other ideas.</p>
             </div>
             <div class="character-card">
                 <img src="images/Griffin_Card.png" alt="Griffin" />
                 <h3>Griffin</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Griffin</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Strength</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 95 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Griffin soars between earth and sky, a guardian of ancient boundaries.</p>
             </div>
             <div class="character-card">
                 <img src="images/Angel_Card.png" alt="Angel" />
                 <h3>Angel</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Angel</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Star<br><b>Second Arcana:</b> Treasure Map</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Angel brings light not to blind, but to reveal. Mercy is her blade—and it cuts both ways.</p>
             </div>
             <div class="character-card">
                 <img src="images/Strategist_Card.png" alt="Strategist" />
                 <h3>Strategist</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Strategist</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Emperor</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Strategist sees the world as a grand game, each move calculated three steps ahead.</p>
             </div>
             <div class="character-card">
                 <img src="images/Paladin2_Card.png" alt="Paladin2" />
                 <h3>Paladin2</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Paladin</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Justice</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Paladin stands as a beacon of righteousness, their faith an unbreakable shield.</p>
             </div>
             <div class="character-card">
                 <img src="images/Siren2_Card.png" alt="Siren2" />
                 <h3>Siren2</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Siren</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Star</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 25 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Siren's song weaves dreams into reality, calling forth both beauty and danger.</p>
             </div>
             <div class="character-card">
                 <img src="images/Siren_Card.png" alt="Siren" />
                 <h3>Siren</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Siren</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Star</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 25 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Siren's song weaves dreams into reality, calling forth both beauty and danger.</p>
             </div>
             <div class="character-card">
                 <img src="images/Martyr_Card.png" alt="Martyr" />
                 <h3>Martyr</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Martyr</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hanged Man</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 60 &nbsp; <b>Coin:</b> 5 &nbsp; <b>Insanity:</b> 45</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Martyr's sacrifice lights the way for others, their pain a beacon of hope.</p>
             </div>
             <div class="character-card">
                 <img src="images/Explorer_Card.png" alt="Explorer" />
                 <h3>Explorer</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Explorer</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The World</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Explorer seeks the unknown, finding wonder in every new horizon.</p>
             </div>
             <div class="character-card">
                 <img src="images/Timekeeper_Card.png" alt="Timekeeper" />
                 <h3>Timekeeper</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Timekeeper</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Wheel of Fortune</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 25 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Timekeeper guards the flow of moments, knowing each second's precious weight.</p>
             </div>
             <div class="character-card">
                 <img src="images/Villian_Card.png" alt="Villian" />
                 <h3>Villian</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Villain</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Devil</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 85 &nbsp; <b>Coin:</b> 40 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Villain sees themselves as the hero of their own story, morality a matter of perspective.</p>
             </div>
             <div class="character-card">
                 <img src="images/Dancer_Card.png" alt="Dancer" />
                 <h3>Dancer</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Dancer</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Star</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 65 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Dancer moves through life with grace, each step a celebration of being.</p>
             </div>
             <div class="character-card">
                 <img src="images/Castaway_Card.png" alt="Castaway" />
                 <h3>Castaway</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Castaway</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hermit</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 5 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Castaway survives against all odds, finding purpose in isolation.</p>
             </div>
             <div class="character-card">
                 <img src="images/Sailor_Card.png" alt="Sailor" />
                 <h3>Sailor</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Sailor</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 85 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Sailor charts courses through storms and stars, at home in the endless blue.</p>
             </div>
             <div class="character-card">
                 <img src="images/Corrupter_Card.png" alt="Corrupter" />
                 <h3>Corrupter</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Corrupter</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Devil</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 35 &nbsp; <b>Insanity:</b> 40</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Corrupter whispers sweet temptations, finding cracks in the strongest foundations.</p>
             </div>
             <div class="character-card">
                 <img src="images/Chronometrer_Card.png" alt="Chronometrer" />
                 <h3>Chronometrer</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Chronometrer</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Wheel of Fortune</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 25 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Chronometrer measures time in heartbeats and stars, each moment precisely counted.</p>
             </div>
             <div class="character-card">
                 <img src="images/Admiral_Card.png" alt="Admiral" />
                 <h3>Admiral</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Admiral</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Chariot</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Admiral commands oceans like others command sentences—decisively and without pause.</p>
             </div>
             <div class="character-card">
                 <img src="images/Fisher_Card.png" alt="Fisher" />
                 <h3>Fisher</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Fisher</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Fisher knows patience is the greatest bait, and secrets swim in deep waters.</p>
             </div>
             <div class="character-card">
                 <img src="images/Guardian_Card.png" alt="Guardian" />
                 <h3>Guardian</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Guardian</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Strength</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Guardian stands watch, their vigilance a shield for those who cannot protect themselves.</p>
             </div>
             <div class="character-card">
                 <img src="images/Usurper_Card.png" alt="Usurper" />
                 <h3>Usurper</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Usurper</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Tower</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 40 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Usurper sees power as their birthright, and every throne as a stepping stone.</p>
             </div>
             <div class="character-card">
                 <img src="images/Thief_Card.png" alt="Thief" />
                 <h3>Thief</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Thief</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 65 &nbsp; <b>Coin:</b> 50 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Thief dances with shadows, making treasures disappear with practiced grace.</p>
             </div>
             <div class="character-card">
                 <img src="images/Sage_Card.png" alt="Sage" />
                 <h3>Sage</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Sage</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hierophant</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Sage holds ancient wisdom, sharing knowledge earned through countless winters.</p>
             </div>
             <div class="character-card">
                 <img src="images/Herald_Card.png" alt="Herald" />
                 <h3>Herald</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Botanist_Card.png" alt="Botanist" />
-                <h3>Botanist</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Sorceress_Card.png" alt="Sorceress" />
-                <h3>Sorceress</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Psion_Card.png" alt="Psion" />
-                <h3>Psion</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Cobbler_Card.png" alt="Cobbler" />
-                <h3>Cobbler</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Bird_Card.png" alt="Bird" />
-                <h3>Bird</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Cataclysm_Card.png" alt="Cataclysm" />
-                <h3>Cataclysm</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Nymph_Card.png" alt="Nymph" />
-                <h3>Nymph</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Wolf_Card.png" alt="Wolf" />
-                <h3>Wolf</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Ceramicist2_Card.png" alt="Ceramicist2" />
-                <h3>Ceramicist2</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Ghost_Card.png" alt="Ghost" />
-                <h3>Ghost</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Wolfman_Card.png" alt="Wolfman" />
-                <h3>Wolfman</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Monk_Card.png" alt="Monk" />
-                <h3>Monk</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Vampire_Card.png" alt="Vampire" />
-                <h3>Vampire</h3>
-                <p>A playable character in Taromancy.</p>
-            </div>
-            <div class="character-card">
-                <img src="images/Assassin_Card.png" alt="Assassin" />
-                <h3>Assassin</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Herald</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Judgement</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 25 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Herald announces change with trumpet and truth, their voice carrying fate's message.</p>
             </div>
             <div class="character-card">
                 <img src="images/Alchemist_Card.png" alt="Alchemist" />
-                <h3>Alchemist</h3>
-                <p>A playable character in Taromancy.</p>
+                <h3>Zanthia</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Alchemist</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hermit<br><b>Second Arcana:</b> The Magician</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 1 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;">Unlock: Purchase a Special Potion during a run</div>
+                <p style="font-size:0.85em; margin-top:0.5em;">Turning chaos into curiosity, the Alchemist stirs the unknown with one hand while writing formulas with the other. Explosions are just part of the process.</p>
             </div>
             <div class="character-card">
                 <img src="images/Warlock_Card.png" alt="Warlock" />
                 <h3>Warlock</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Warlock</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Devil</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 35 &nbsp; <b>Insanity:</b> 40</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Warlock bargains with forbidden powers, wielding dark magic at a steep price.</p>
             </div>
             <div class="character-card">
                 <img src="images/Imp_Card.png" alt="Imp" />
                 <h3>Imp</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Imp</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Fool</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 60 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Imp delights in mischief, turning chaos into opportunity with a wicked grin.</p>
             </div>
             <div class="character-card">
                 <img src="images/Ranger_Card.png" alt="Ranger" />
                 <h3>Ranger</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Ranger</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hermit</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 25 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Ranger roams the wilds, guided by instinct and a keen eye for danger.</p>
             </div>
             <div class="character-card">
                 <img src="images/Druid_Card.png" alt="Druid" />
                 <h3>Druid</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Druid</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Empress</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Druid communes with nature, drawing strength from the living world.</p>
             </div>
             <div class="character-card">
                 <img src="images/Paladin_Card.png" alt="Paladin" />
                 <h3>Paladin</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Paladin</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Justice</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 10</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Paladin stands as a beacon of righteousness, their faith an unbreakable shield.</p>
             </div>
             <div class="character-card">
                 <img src="images/Princess_Card.png" alt="Princess" />
                 <h3>Princess</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Princess</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Star</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Princess inspires hope, her kindness shining in the darkest times.</p>
             </div>
             <div class="character-card">
                 <img src="images/Maiden_Card.png" alt="Maiden" />
                 <h3>Maiden</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Maiden</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Lovers</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 65 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Maiden brings new beginnings, her innocence a source of strength.</p>
             </div>
             <div class="character-card">
                 <img src="images/Queen_Card.png" alt="Queen" />
                 <h3>Queen</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Queen</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Empress</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 90 &nbsp; <b>Coin:</b> 40 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Queen rules with wisdom and compassion, her presence a comfort to all.</p>
             </div>
             <div class="character-card">
                 <img src="images/Rogue_Card.png" alt="Rogue" />
                 <h3>Rogue</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Rogue</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 35 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Rogue moves unseen, her skills honed in the shadows.</p>
             </div>
             <div class="character-card">
                 <img src="images/Lion_Card.png" alt="Lion" />
                 <h3>Lion</h3>
-                <p>A playable character in Taromancy.</p>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Lion</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Strength</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 95 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Lion leads with courage, his roar echoing through the wilds.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Arsonist_Card.png" alt="Arsonist" />
+                <h3>Nathan</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Arsonist</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Devil<br><b>Second Arcana:</b> The Tower</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 0 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Arsonist lights fires to watch what survives. Some want to burn it all down—he has a plan for it.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Artificer_Card.png" alt="Artificer" />
+                <h3>Elsa</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Artificer</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Magician<br><b>Second Arcana:</b> Treasure Map</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 65 &nbsp; <b>Coin:</b> 125 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Artificer doesn't invent—they reimagine. Magic and metal are merely tools for their vision.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Artist_Card.png" alt="Artist" />
+                <h3>Sidra</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Artist</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Temperance<br><b>Second Arcana:</b> The World</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 0 &nbsp; <b>Insanity:</b> 40</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Artist sees beauty where others see ruin. Their brush is gentler than a blade—but no less precise.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Botanist_Card.png" alt="Botanist" />
+                <h3>Botanist</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Botanist</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Empress</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Botanist nurtures life in all its forms, finding beauty in the smallest of seeds.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Sorceress_Card.png" alt="Sorceress" />
+                <h3>Sorceress</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Sorceress</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Magician</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Sorceress wields ancient magic with grace, turning chaos into art.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Psion_Card.png" alt="Psion" />
+                <h3>Psion</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Psion</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 65 &nbsp; <b>Coin:</b> 25 &nbsp; <b>Insanity:</b> 40</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Psion reads minds like others read books, finding truth in the spaces between thoughts.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Cobbler_Card.png" alt="Cobbler" />
+                <h3>Cobbler</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Cobbler</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Hermit</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Cobbler mends more than shoes, fixing what others have broken with careful hands.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Bird_Card.png" alt="Bird" />
+                <h3>Bird</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Bird</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Star</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 60 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Bird sees the world from above, carrying messages between earth and sky.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Cataclysm_Card.png" alt="Cataclysm" />
+                <h3>Cataclysm</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Cataclysm</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Tower</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 90 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Cataclysm brings change through destruction, clearing the way for new beginnings.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Nymph_Card.png" alt="Nymph" />
+                <h3>Nymph</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Nymph</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Star</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 20 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Nymph dances with nature's spirits, bringing life to forgotten places.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Wolf_Card.png" alt="Wolf" />
+                <h3>Wolf</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Wolf</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 85 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Wolf hunts in the shadows, a guardian of the wild places.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Ceramicist2_Card.png" alt="Ceramicist2" />
+                <h3>Ceramicist2</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Ceramicist</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Empress</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 75 &nbsp; <b>Coin:</b> 25 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Ceramicist shapes clay into beauty, finding strength in fragility.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Hunter_Card.png" alt="Hunter" />
+                <h3>Hunter</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Hunter</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Strength</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 85 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Hunter tracks more than prey, following the threads of fate itself.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Lizardman_Card.png" alt="Lizardman" />
+                <h3>Lizardman</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Lizardman</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Strength</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 90 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Lizardman adapts to survive, finding strength in ancient instincts.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Dummy_Card.png" alt="Dummy" />
+                <h3>Dummy</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Dummy</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Fool</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 0 &nbsp; <b>Insanity:</b> 0</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Dummy takes every hit without complaint, teaching through silent example.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Spy_Card.png" alt="Spy" />
+                <h3>Spy</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Spy</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 65 &nbsp; <b>Coin:</b> 40 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Spy moves unseen, gathering secrets like others gather coins.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Blob_Card.png" alt="Blob" />
+                <h3>Blob</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Blob</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 120 &nbsp; <b>Coin:</b> 5 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Blob adapts to any situation, taking the shape of whatever it needs to be.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Skeleton_Card.png" alt="Skeleton" />
+                <h3>Skeleton</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Skeleton</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Death</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 80 &nbsp; <b>Coin:</b> 10 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Skeleton dances between life and death, a reminder of what lies beyond.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Shroom_Card.png" alt="Shroom" />
+                <h3>Shroom</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Shroom</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Moon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 70 &nbsp; <b>Coin:</b> 15 &nbsp; <b>Insanity:</b> 35</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Shroom spreads wisdom through spores, connecting minds in ways words cannot.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Troll_Card.png" alt="Troll" />
+                <h3>Troll</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Troll</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> Strength</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 110 &nbsp; <b>Coin:</b> 5 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Troll guards bridges and boundaries, testing those who seek to cross.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Purpledragon_Card.png" alt="PurpleDragon" />
+                <h3>PurpleDragon</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Purple Dragon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Emperor</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 120 &nbsp; <b>Coin:</b> 50 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Purple Dragon rules with wisdom and power, their scales reflecting the mysteries of the night sky.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Reddragon_Card.png" alt="RedDragon" />
+                <h3>RedDragon</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Red Dragon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Tower</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 130 &nbsp; <b>Coin:</b> 40 &nbsp; <b>Insanity:</b> 25</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Red Dragon breathes fire and fury, a force of destruction and rebirth.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Greendragon_Card.png" alt="GreenDragon" />
+                <h3>GreenDragon</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Green Dragon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Empress</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 115 &nbsp; <b>Coin:</b> 30 &nbsp; <b>Insanity:</b> 20</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Green Dragon nurtures the wild places, their breath bringing life to the forest.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Demon_Card.png" alt="Demon" />
+                <h3>Demon</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Demon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Devil</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 100 &nbsp; <b>Coin:</b> 60 &nbsp; <b>Insanity:</b> 40</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Demon tempts and tests, finding pleasure in the corruption of souls.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Yellowdargon_Card.png" alt="YellowDragon" />
+                <h3>YellowDragon</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Yellow Dragon</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Sun</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 110 &nbsp; <b>Coin:</b> 35 &nbsp; <b>Insanity:</b> 15</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Yellow Dragon brings light and warmth, their scales shining like the sun.</p>
+            </div>
+            <div class="character-card">
+                <img src="images/Alient_Card.png" alt="Alient" />
+                <h3>Alien</h3>
+                <div class="subtitle" style="font-size:1.2em; color:#ffe7a0;">The Alien</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Main Arcana:</b> The Star</div>
+                <div style="font-size:0.95em; margin: 0.2em 0;"><b>Health:</b> 85 &nbsp; <b>Coin:</b> 45 &nbsp; <b>Insanity:</b> 30</div>
+                <div style="font-size:0.9em; color:#aaa; margin: 0.2em 0;"></div>
+                <p style="font-size:0.85em; margin-top:0.5em;">The Alien observes from beyond, bringing knowledge from distant stars.</p>
             </div>
         </div>
     </div>
@@ -785,6 +1318,71 @@
             setRandomVideo();
             setInterval(changeVideo, 30000);
         };
+
+        // Custom character order
+        const customOrder = [
+            'Page', 'Mage', 'Oracle', 'Princess', 'Prince', 'Priest', 'Maiden', 'Ranger',
+            'Barbarian', 'Miner', 'Rogue', 'Paladin', 'Shadow', 'Zombie', 'Monk', 'Imp',
+            'Warlock', 'Ghost', 'Wolfman', 'Treant', 'Robot', 'Druid', 'Knight', 'Vampire',
+            'Assassin', 'Cleric', 'Fox', 'Spider', 'Alchemist', 'Lion', 'Snood', 'Lich',
+            'Incubus', 'Succubus', 'Banshee', 'Merchant', 'Blacksmith', 'Cultist', 'Mime',
+            'Chef', 'Artist', 'Doctor', 'DeathKnight', 'UndeadArcher', 'Queen', 'Arsonist',
+            'Beastmaster', 'Artificer', 'Engineer', 'Pirate', 'Sharpshooter', 'Mutant',
+            'Butcher', 'Maid', 'Woodsman', 'Crone', 'Hag', 'Dummy', 'Blob', 'Shroom',
+            'Bandit', 'Golem', 'Pig', 'Troll', 'Orphan', 'Hunter', 'King', 'Bard', 'Spy',
+            'Alien', 'Lizardman', 'RedDragon', 'PurpleDragon', 'GreenDragon', 'YellowDragon',
+            'Demon', 'Witch', 'Soldier', 'Skeleton', 'Slimey', 'Moobi', 'Angel', 'Nymph',
+            'DragonKnight', 'Gambler', 'Adventurer', 'Farmer', 'Mechanic', 'Psion', 'Thief',
+            'Beholder', 'Dog', 'DragonKing', 'Griffin', 'Insect', 'Shaman', 'Warg',
+            'Chronometrer', 'Timekeeper', 'Keymaker', 'Cobler', 'Castaway', 'Bird', 'Wolf',
+            'Jester', 'Mad', 'Dancer', 'Arbitor', 'Executioner', 'Politician', 'Admiral',
+            'Siren', 'Magnus', 'Strategist', 'Librarian', 'Scholar', 'Apostle', 'Corrupter',
+            'Herald', 'Teacher', 'Trickster', 'Guardian', 'Rebel', 'Sage', 'Martyr',
+            'Villian', 'Sailor', 'Botanist', 'Ceramicist', 'Astrologer', 'Fisher', 'Usurper',
+            'Cataclysm', 'Darkness', 'Inevitable', 'One', 'Jeweler', 'Bartender', 'Wizard',
+            'Sorceress', 'GraveRobber', 'Necromancer', 'Illusionist', 'Djinn', 'Loner',
+            'Recluse', 'Judge', 'Socialite', 'Gatekeeper', 'Explorer', 'Fallen', 'Machine'
+        ];
+
+        // Get all character cards
+        const charactersGrid = document.getElementById('characters-grid');
+        const characterCards = Array.from(charactersGrid.children);
+
+        // Function to sort cards
+        function sortCards(sortType) {
+            if (sortType === 'custom') {
+                characterCards.sort((a, b) => {
+                    const nameA = a.querySelector('h3').textContent;
+                    const nameB = b.querySelector('h3').textContent;
+                    return customOrder.indexOf(nameA) - customOrder.indexOf(nameB);
+                });
+            } else if (sortType === 'alphabetical') {
+                characterCards.sort((a, b) => {
+                    const nameA = a.querySelector('h3').textContent;
+                    const nameB = b.querySelector('h3').textContent;
+                    return nameA.localeCompare(nameB);
+                });
+            }
+
+            // Clear and reappend sorted cards
+            charactersGrid.innerHTML = '';
+            characterCards.forEach(card => charactersGrid.appendChild(card));
+        }
+
+        // Add click handlers to sort buttons
+        document.querySelectorAll('.sort-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Sort cards
+                sortCards(btn.dataset.sort);
+            });
+        });
+
+        // Initial sort by custom order
+        sortCards('custom');
     </script>
 </body>
 </html> 
