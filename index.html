@@ -103,6 +103,28 @@
             margin-top: 0 !important;
             margin-bottom: 0 !important;
         }
+        .hero-steam-btn {
+            display: inline-block;
+            background-color: #6b46c1; /* Base purple color */
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.8em; /* Consistent with other hero text */
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer;
+            margin-top: 2em; /* Spacing from paragraph above */
+            font-family: 'Almanack', 'IM Fell English', Arial, sans-serif;
+            letter-spacing: 1px;
+            text-decoration: none; /* Remove underline from link */
+            transition: all 0.3s ease;
+            box-shadow: 0 0 16px 0 #6b46c1aa; /* Initial subtle glow */
+            animation: steam-glow 1.5s infinite alternate; /* Apply the existing glow animation */
+        }
+        .hero-steam-btn:hover {
+            background-color: #553c9a; /* Darker purple on hover */
+            transform: scale(1.05); /* Slight scale effect */
+            box-shadow: 0 0 32px 4px #a084e8cc, 0 0 8px 2px #fff2; /* Intensify glow on hover - matches 100% of animation */
+        }
         button {
             background-color: #6b46c1;
             color: white;
@@ -629,6 +651,7 @@
     <div class="content">
         <img src="images/Taromancy_Library_Logo.png" alt="Taromancy Logo" class="hero-logo" />
         <p>A roguelike deck builder where divine beings and mortal souls intertwine in a cosmic dance of fate and fortune.</p>
+        <a href="https://store.steampowered.com/app/3111380/Taromancy/" target="_blank" rel="noopener" class="steam-btn">Wishlist on Steam</a>
     </div>
     <section id="features">
         <h2 class="section-title">Features</h2>
